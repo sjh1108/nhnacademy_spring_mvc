@@ -10,10 +10,10 @@ public class Student {
     private String password;
     private String name;
     private String email;
-    private int score;
+    private String score;
     private String comment;
 
-    public Student(String id, String password, String name, String email, int score, String comment) {
+    public Student(String id, String password, String name, String email, String score, String comment) {
         this.id = id;
         this.password = password;
         this.name = name;
@@ -27,7 +27,7 @@ public class Student {
         this.password = password;
     }
 
-    public static Student create(String id, String password, String name, String email, int score, String comment) {
+    public static Student create(String id, String password, String name, String email, String score, String comment) {
         return new Student(id,password,name,email,score,comment);
     }
 
@@ -38,8 +38,18 @@ public class Student {
     private static final String MASK = "*****";
 
     public static Student constructPasswordMaskedUser(Student student) {
-        Student newUser = Student.create(student.getId(), MASK, student.getName(), student.getEmail(), student.getScore(), student.getComment());
+        return Student.create(student.getId(), MASK, student.getName(), student.getEmail(), student.getScore(), student.getComment());
+    }
 
-        return newUser;
+    public static Student constructScoreAndCommentMaskedUser(Student student) {
+
+        return Student.create(
+                student.getId(),
+                MASK,
+                student.getName(),
+                student.getEmail(),
+                MASK,
+                MASK
+        );
     }
 }

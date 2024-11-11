@@ -8,16 +8,14 @@ import org.springframework.stereotype.Repository;
 public interface StudentRepository {
     boolean exists(String id);
 
-    Student register(String name, String email, int score, String comment);
-
     Student getStudent(String id);
 
     boolean matches(String id, String password);
 
-    Student addStudent(String id, String password, String name, String email, int score, String comment);
+    Student addStudent(String id, String password, String name, String email, String score, String comment);
 
 
-    Student addStudent(Student student);
+    void addStudent(Student student);
 
     void modifyStudent(Student student);
 }

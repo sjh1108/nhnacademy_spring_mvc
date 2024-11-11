@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.Student;
 import com.example.demo.repository.StudentRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,9 +27,10 @@ public class StudentLoginController {
     @GetMapping("/login")
     public String login(@CookieValue(value = "SESSION", required = false) String session,
                         Model model) {
+        Student student = studentRepository.getStudent(session);
         if (StringUtils.hasText(session)) {
-            model.addAttribute("SESSION", session);
-            return "studentView";
+            model.addAttribute("student", student);
+            return "redirect:/student/" + student.getId();
         } else {
             return "loginForm";
         }
@@ -46,11 +48,11 @@ public class StudentLoginController {
             Cookie cookie = new Cookie("SESSION", session.getId());
             response.addCookie(cookie);
 
-            modelMap.put("id", session.getId());
-            modelMap.put("student",studentRepository.getStudent(id));
-            return "studentView";
+            Student student = studentRepository.getStudent(id);
+            modelMap.put("student", student);
+            return "redirect:/student/" + student.getId();
         } else {
-            return "redirect:/loginForm";
+            return "redirect:/login";
         }
     }
 

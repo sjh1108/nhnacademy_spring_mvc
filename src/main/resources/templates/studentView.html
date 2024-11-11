@@ -7,13 +7,11 @@
 <body>
 <h1>Student Information</h1>
 <p>아이디: <span th:text="${student.id}"></span></p>
-<p>비밀번호:
-<!--    <span th:text="'*'.repeat(${student.password.length()})"></span>-->
-</p>
+<p>비밀번호: <span th:text="${student.password}"></span></p>
 <p>이름: <span th:text="${student.name}"></span></p>
 <p>이메일: <span th:text="${student.email}"></span></p>
 <p>성적: <span th:text="${student.score}"></span></p>
 <p>평가: <span th:text="${student.comment}"></span></p>
-<a href="student/modify">정보수정</a>
+<a th:href="@{/student/modify(id=${student.id})}">정보수정</a>
 </body>
 </html>

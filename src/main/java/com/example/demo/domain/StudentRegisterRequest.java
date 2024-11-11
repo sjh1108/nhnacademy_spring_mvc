@@ -8,7 +8,7 @@ public class StudentRegisterRequest {
     String password;
     String name;
     String email;
-    int score;
+    String score;
     String comment;
 
 }

@@ -15,16 +15,11 @@ public class StudentRepositoryImpl implements StudentRepository {
 
     public StudentRepositoryImpl() {
         studentMap.put("a",Student.create("a","a","a",
-                "mail@mail.com",100,"good"));
+                "mail@mail.com","100","good"));
     }
     @Override
     public boolean exists(String id) {
         return studentMap.containsKey(id);
-    }
-
-    @Override
-    public Student register(String name, String email, int score, String comment) {
-        return null;
     }
 
     @Override
@@ -40,7 +35,7 @@ public class StudentRepositoryImpl implements StudentRepository {
     }
 
     @Override
-    public Student addStudent(String id, String password, String name, String email, int score, String comment) {
+    public Student addStudent(String id, String password, String name, String email, String score, String comment) {
         if (exists(id)) {
             throw new StudentAlreadyExistsException();
         }
@@ -50,13 +45,12 @@ public class StudentRepositoryImpl implements StudentRepository {
     }
 
     @Override
-    public Student addStudent(Student student) {
+    public void addStudent(Student student) {
         if (exists(student.getId())) {
             throw new StudentAlreadyExistsException();
         }
         studentMap.put(student.getId(), student);
         System.out.println("repositroy addstudent id, pwd"+student.getId()+", "+student.getPassword());
-        return Student.create(student.getId(), student.getPassword());
     }
 
     @Override

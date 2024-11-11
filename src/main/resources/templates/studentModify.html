@@ -5,13 +5,14 @@
   <title>학생 정보 수정</title>
 </head>
 <body>
-<form method="post" action="/student/modify/action">
-  아이디: <input type="text" name="id" value="${student.id}" readonly /><br />
-  비밀번호: <input type="password" name="password" value="${student.password}" /><br />
-  이름: <input type="text" name="name" value="${student.name}" /><br />
-  이메일: <input type="text" name="email" value="${student.email}" /><br />
-  점수: <input type="text" name="score" value="${student.score}" /><br />
-  코멘트: <input type="text" name="comment" value="${student.comment}" /><br />
+<h1>학생 정보 수정</h1>
+<form method="post" action="/student/modify">
+  <label>아이디: <input type="text" name="id" th:value="${student.id}" readonly /></label><br />
+  <label>비밀번호: <input type="password" name="password" th:value="${student.password}" /></label><br />
+  <label>이름: <input type="text" name="name" th:value="${student.name}" /></label><br />
+  <label>이메일: <input type="text" name="email" th:value="${student.email}" /></label><br />
+  <label>점수: <input type="text" name="score" th:value="${student.score}" /></label><br />
+  <label>코멘트: <input type="text" name="comment" th:value="${student.comment}" /></label><br />
   <input type="submit" value="수정하기" />
 </form>
 </body>
